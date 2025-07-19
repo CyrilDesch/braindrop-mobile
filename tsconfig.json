@@ -1,0 +1,26 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "useDefineForClassFields": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ui": ["src/core/ui"],
+      "@ui/*": ["src/core/ui/*"],
+      "@assets/*": ["assets/*"],
+      "@icons/*": ["assets/icons/*"]
+    }
+  },
+  "include": [
+    "src",
+    "components",
+    "**.ts",
+    "**.js",
+    "**.cjs",
+    "app",
+    "eslint.config.mjs"
+  ],
+  "exclude": ["node_modules", "android", "ios"]
+}

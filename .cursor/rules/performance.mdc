@@ -1,0 +1,98 @@
+# Performance Optimization Guidelines
+
+## React Native Performance
+
+This project follows React Native performance best practices:
+
+### Component Optimization
+
+- **Use React.memo()** for expensive components that re-render frequently
+- **Optimize re-renders** with proper dependency arrays in hooks
+- **Use useCallback** for function props to prevent unnecessary re-renders
+- **Use useMemo** for expensive calculations
+- **Avoid inline objects** in render methods
+
+### List Performance
+
+- **Use FlatList** for large lists instead of ScrollView
+- **Implement proper key props** for list items
+- **Use getItemLayout** for fixed-height items
+- **Implement windowing** for very large lists
+- **Use removeClippedSubviews** for better memory management
+
+### Image Optimization
+
+- **Use appropriate image formats** (WebP for better compression)
+- **Implement lazy loading** for images
+- **Use proper image dimensions** to avoid layout shifts
+- **Cache images** appropriately
+- **Use placeholder images** during loading
+
+### Memory Management
+
+- **Clean up subscriptions** in useEffect cleanup functions
+- **Avoid memory leaks** with proper event listener cleanup
+- **Use WeakMap/WeakSet** for object references when appropriate
+- **Monitor memory usage** in development
+
+### Example Usage
+
+```typescript
+import React, { useCallback, useMemo } from "react";
+
+// Optimized component
+const NoteItem = React.memo(({ note, onPress }) => {
+  const handlePress = useCallback(() => {
+    onPress(note.id);
+  }, [note.id, onPress]);
+
+  const formattedDate = useMemo(() => {
+    return formatDate(note.createdAt);
+  }, [note.createdAt]);
+
+  return (
+    <TouchableOpacity onPress={handlePress}>
+      <Text>{note.title}</Text>
+      <Text>{formattedDate}</Text>
+    </TouchableOpacity>
+  );
+});
+
+// Optimized list
+const NotesList = ({ notes, onNotePress }) => {
+  const renderItem = useCallback(
+    ({ item }) => <NoteItem note={item} onPress={onNotePress} />,
+    [onNotePress],
+  );
+
+  return (
+    <FlatList
+      data={notes}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id}
+      removeClippedSubviews={true}
+      maxToRenderPerBatch={10}
+      windowSize={10}
+    />
+  );
+};
+```
+
+## Bundle Size Optimization
+
+- **Use dynamic imports** for large libraries
+- **Tree-shake unused code** with proper import statements
+- **Use lightweight alternatives** when possible
+- **Monitor bundle size** regularly
+
+## Animation Performance
+
+- **Use native driver** for animations when possible
+- **Avoid layout animations** on the main thread
+- **Use transform properties** instead of layout properties
+- **Implement proper cleanup** for animations
+  description:
+  globs:
+  alwaysApply: false
+
+---

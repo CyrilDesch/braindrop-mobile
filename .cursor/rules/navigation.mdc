@@ -1,0 +1,56 @@
+# Navigation Guidelines
+
+## Expo Router Structure
+
+This project uses Expo Router with file-based routing in the `app/` directory:
+
+### File-based Routing
+
+- **`app/_layout.tsx`**: Root layout with Sentry integration and global providers
+- **`app/index.tsx`**: Main entry point (home screen)
+- **`app/routes/`**: Nested route definitions
+- **`app/routes/tabs/`**: Tab-based navigation structure
+
+### Navigation Patterns
+
+- **Use Expo Router hooks**: `useRouter`, `useLocalSearchParams`, `useGlobalSearchParams`
+- **Type-safe navigation**: Define route parameters in TypeScript
+- **Deep linking**: Configure deep links in `app.json` and handle them in routes
+- **Navigation state**: Use `useNavigationContainerRef` for navigation state management
+
+### Route Organization
+
+- **Group related routes** in subdirectories
+- **Use dynamic routes** with `[param].tsx` naming
+- **Create layout files** with `_layout.tsx` for shared layouts
+- **Handle loading states** with `loading.tsx` files
+
+### Navigation Best Practices
+
+- **Prevent navigation conflicts** by checking navigation state
+- **Use proper back navigation** with `router.back()`
+- **Handle deep links** appropriately for app state
+- **Implement proper loading states** during navigation
+- **Use navigation events** for analytics and state management
+
+### Example Usage
+
+```typescript
+import { useRouter, useLocalSearchParams } from "expo-router";
+
+// Navigate to a route
+const router = useRouter();
+router.push("/note/123");
+
+// Get route parameters
+const { id } = useLocalSearchParams<{ id: string }>();
+
+// Navigate back
+router.back();
+```
+
+description:
+globs:
+alwaysApply: false
+
+---

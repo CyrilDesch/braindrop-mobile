@@ -1,0 +1,75 @@
+# Error Handling Guidelines
+
+## Sentry Integration
+
+This project uses Sentry for error tracking and monitoring:
+
+### Error Tracking
+
+- **Wrap root component** with `Sentry.wrap()` for automatic error capture
+- **Use Sentry.captureException()** for manual error reporting
+- **Add context** to errors with `Sentry.setContext()` or `Sentry.setUser()`
+- **Use breadcrumbs** to track user actions leading to errors
+
+### Error Boundaries
+
+- **Implement error boundaries** for component-level error handling
+- **Provide fallback UI** when components crash
+- **Log errors to Sentry** from error boundaries
+- **Recover gracefully** when possible
+
+### Example Usage
+
+```typescript
+import * as Sentry from "@sentry/react-native";
+
+// Manual error capture
+try {
+  // Risky operation
+} catch (error) {
+  Sentry.captureException(error, {
+    tags: { feature: "note-creation" },
+    extra: { noteData: noteData },
+  });
+}
+
+// Add context
+Sentry.setContext("user", {
+  id: user.id,
+  email: user.email,
+});
+
+// Add breadcrumb
+Sentry.addBreadcrumb({
+  category: "navigation",
+  message: "User navigated to note detail",
+  level: "info",
+});
+```
+
+## Error Handling Patterns
+
+- **Handle async errors** with try/catch in async functions
+- **Use error states** in React Query for data fetching errors
+- **Show user-friendly error messages** instead of technical details
+- **Provide retry mechanisms** for transient errors
+- **Log errors appropriately** for debugging
+
+## Toast Notifications
+
+- **Use toast messages** for user feedback on errors
+- **Show success messages** for completed actions
+- **Use consistent error messaging** across the app
+- **Configure toast positioning** with safe area insets
+
+## Network Error Handling
+
+- **Handle offline states** gracefully
+- **Implement retry logic** for failed requests
+- **Show appropriate loading states** during retries
+- **Cache data** for offline access when possible
+  description:
+  globs:
+  alwaysApply: false
+
+---

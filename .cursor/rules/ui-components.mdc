@@ -1,0 +1,65 @@
+# UI Components Guidelines
+
+## Design System
+
+The project uses a comprehensive design system with the following key elements:
+
+### Colors
+
+Reference [src/core/ui/constants/Colors.ts](mdc:src/core/ui/constants/Colors.ts) for all color usage:
+
+- **Theme-based colors**: Always use `Theme.light` or `Theme.dark` instead of hardcoded colors
+- **Semantic colors**: Use `primary`, `secondary`, `danger`, `text`, `background` from the theme
+- **Glass effects**: Use `glass` and `glassInverse` for overlay effects
+
+### Typography
+
+Reference [src/core/ui/constants/Typography.ts](mdc:src/core/ui/constants/Typography.ts) for all text styling:
+
+- **Headlines**: Use `headline`, `h1`, `h2`, `h3`, `h4`, `h5` for titles
+- **Body text**: Use `body1`, `body2`, `impactBody` for content
+- **Buttons**: Use `button`, `mediumButton`, `smallButton` for button text
+- **Platform-specific**: Font sizes automatically adjust for Android/iOS
+
+### Base Components
+
+Always use the base components from [src/core/ui/base/](mdc:src/core/ui/base/):
+
+- **Text**: Use `@ui/Text` instead of React Native's Text
+- **Button**: Use `@ui/Button` instead of React Native's Button
+- **Card**: Use `@ui/Card` for content containers
+- **View**: Use `@ui/View` for layout containers
+- **TextInput**: Use `@ui/TextInput` for form inputs
+
+## Component Patterns
+
+- **Themed components**: All UI components should support light/dark themes
+- **Responsive design**: Use Layout constants for consistent spacing
+- **Accessibility**: Include proper accessibility props (accessibilityLabel, accessibilityHint)
+- **Platform-specific**: Consider iOS/Android differences in styling and behavior
+
+## Usage Examples
+
+```typescript
+// ✅ Correct - Using theme colors and typography
+import { Text, View } from "@ui";
+import { Theme } from "@ui/constants/Colors";
+import { typography } from "@ui/constants/Typography";
+
+<View style={{ backgroundColor: Theme.light.background }}>
+  <Text style={typography.h1}>Title</Text>
+</View>;
+
+// ❌ Incorrect - Hardcoded colors and direct React Native imports
+import { Text, View } from "react-native";
+
+<View style={{ backgroundColor: "#fff" }}>
+  <Text style={{ fontSize: 24 }}>Title</Text>
+</View>;
+```
+
+description:
+globs:
+alwaysApply: false
+
+---

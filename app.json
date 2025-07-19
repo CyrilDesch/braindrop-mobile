@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "BrainDrop",
+    "slug": "BrainDrop",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "com.cyrelis.braindrop",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cyrelis.braindrop",
+      "usesAppleSignIn": true,
+      "appleTeamId": "4D9QVDY8ZY",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.cyrelis.braindrop",
+      "softwareKeyboardLayoutMode": "pan"
+    },
+    "plugins": [
+      "expo-font",
+      "expo-asset",
+      "expo-router",
+      "@react-native-google-signin/google-signin",
+      "expo-apple-authentication",
+      "expo-secure-store",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
+    "newArchEnabled": true,
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "a54bf874-6002-4139-9e65-3b179b744cbe"
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+# Project Structure Guide
+
+This is a React Native/Expo mobile application called "BrainDrop" (organized-notes-mobile). The project uses Expo Router for navigation and follows a feature-based architecture.
+
+## Key Entry Points
+
+- [app/\_layout.tsx](mdc:app/_layout.tsx) - Root layout with Sentry integration, font loading, and toast configuration
+- [app/index.tsx](mdc:app/index.tsx) - Main app entry point
+- [package.json](mdc:package.json) - Project dependencies and scripts
+
+## Core Architecture
+
+- **App Directory**: Uses Expo Router with file-based routing in the `app/` directory
+- **Source Code**: Main source code is in `src/` with the following structure:
+  - `src/core/` - Shared utilities, hooks, UI components, and configurations
+  - `src/features/` - Feature-based modules (category, note)
+  - `src/routes/` - Route definitions and navigation logic
+
+## UI System
+
+The project has a comprehensive UI system in `src/core/ui/`:
+
+- [src/core/ui/constants/Colors.ts](mdc:src/core/ui/constants/Colors.ts) - Theme colors with light/dark variants
+- [src/core/ui/constants/Typography.ts](mdc:src/core/ui/constants/Typography.ts) - Typography system using Geist fonts
+- [src/core/ui/base/](mdc:src/core/ui/base/) - Base UI components (Button, Text, Card, etc.)
+- [src/core/ui/constants/Layout.ts](mdc:src/core/ui/constants/Layout.ts) - Layout constants and spacing
+
+## Key Technologies
+
+- **Expo SDK 52** with React Native 0.76.9
+- **Expo Router** for navigation
+- **TypeScript** with strict mode enabled
+- **React Query** for data fetching
+- **Sentry** for error tracking
+- **React Hook Form** for form management
+- **Geist Fonts** for typography
+
+## Development Scripts
+
+- `yarn start` - Start Expo development server
+- `yarn android` / `yarn ios` - Run on specific platforms
+- `yarn lint-check` - Check code quality
+- `yarn lint-fix` - Fix linting issues
+  description:
+  globs:
+  alwaysApply: false
+
+---

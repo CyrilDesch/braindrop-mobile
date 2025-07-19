@@ -1,0 +1,92 @@
+# Testing Guidelines
+
+## Testing Framework
+
+This project uses Jest with jest-expo preset for testing:
+
+### Test Structure
+
+- **Unit tests**: Test individual functions and components
+- **Integration tests**: Test component interactions
+- **E2E tests**: Test complete user flows (when applicable)
+- **Test files**: Use `.test.ts` or `.test.tsx` extensions
+
+### Component Testing
+
+- **Test component rendering** with proper props
+- **Test user interactions** (press, scroll, input)
+- **Test error states** and loading states
+- **Test accessibility** features
+- **Mock external dependencies** appropriately
+
+### Hook Testing
+
+- **Test custom hooks** with `@testing-library/react-hooks`
+- **Test hook state changes** and side effects
+- **Test error handling** in hooks
+- **Test cleanup** functions
+
+### Example Usage
+
+```typescript
+import { render, screen, fireEvent } from "@testing-library/react-native";
+import { NoteItem } from "../NoteItem";
+
+describe("NoteItem", () => {
+  const mockNote = {
+    id: "1",
+    title: "Test Note",
+    content: "Test content",
+    createdAt: new Date(),
+  };
+
+  const mockOnPress = jest.fn();
+
+  it("renders note title and content", () => {
+    render(<NoteItem note={mockNote} onPress={mockOnPress} />);
+
+    expect(screen.getByText("Test Note")).toBeTruthy();
+    expect(screen.getByText("Test content")).toBeTruthy();
+  });
+
+  it("calls onPress when pressed", () => {
+    render(<NoteItem note={mockNote} onPress={mockOnPress} />);
+
+    fireEvent.press(screen.getByText("Test Note"));
+    expect(mockOnPress).toHaveBeenCalledWith("1");
+  });
+
+  it("handles empty content gracefully", () => {
+    const emptyNote = { ...mockNote, content: "" };
+    render(<NoteItem note={emptyNote} onPress={mockOnPress} />);
+
+    expect(screen.getByText("Test Note")).toBeTruthy();
+    expect(screen.queryByText("Test content")).toBeNull();
+  });
+});
+```
+
+### Mocking Guidelines
+
+- **Mock API calls** with jest.mock()
+- **Mock navigation** functions for route testing
+- **Mock external libraries** that don't work in test environment
+- **Use mock data** that represents real data structure
+
+### Test Coverage
+
+- **Aim for high coverage** on business logic
+- **Test edge cases** and error scenarios
+- **Test user interactions** thoroughly
+- **Test accessibility** features
+
+### Running Tests
+
+- **`yarn test`**: Run tests in watch mode
+- **`yarn test --coverage`**: Run tests with coverage report
+- **`yarn test --watchAll=false`**: Run tests once
+  description:
+  globs:
+  alwaysApply: false
+
+---

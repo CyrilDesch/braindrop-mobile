@@ -1,0 +1,77 @@
+# State Management Guidelines
+
+## React Query (TanStack Query)
+
+This project uses React Query for server state management:
+
+### Query Patterns
+
+- **Use custom hooks** for data fetching logic
+- **Implement proper error handling** with error boundaries
+- **Use optimistic updates** for better UX
+- **Implement proper loading states** with skeleton screens
+- **Use query invalidation** to refresh data after mutations
+
+### Mutation Patterns
+
+- **Use mutations for data changes** (create, update, delete)
+- **Implement rollback on error** for optimistic updates
+- **Show success/error feedback** using toast messages
+- **Invalidate related queries** after successful mutations
+
+### Example Usage
+
+```typescript
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+
+// Query hook
+const useNotes = () => {
+  return useQuery({
+    queryKey: ["notes"],
+    queryFn: fetchNotes,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+};
+
+// Mutation hook
+const useCreateNote = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: createNote,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      Toast.show({ type: "success", text1: "Note created" });
+    },
+    onError: (error) => {
+      Toast.show({ type: "error", text1: "Failed to create note" });
+    },
+  });
+};
+```
+
+## Local State Management
+
+- **Use React hooks** for local component state
+- **Use custom hooks** for reusable state logic
+- **Use Context API** sparingly for global state
+- **Prefer composition** over complex state management
+
+## App State
+
+- **Use `useAppState`** hook for app lifecycle management
+- **Handle background/foreground** transitions appropriately
+- **Save state on app pause** if needed
+- **Restore state on app resume** when necessary
+
+## Form State
+
+- **Use React Hook Form** for form management
+- **Implement proper validation** with schema validation
+- **Handle form submission** with loading states
+- **Show validation errors** inline with form fields
+  description:
+  globs:
+  alwaysApply: false
+
+---
