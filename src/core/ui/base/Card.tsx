@@ -5,6 +5,9 @@ import { Theme } from "@ui/constants/Colors";
 import { useThemeColor } from "src/core/hooks/useThemeColor";
 import { typography } from "@ui/constants/Typography";
 import { Text } from "./Text";
+import { Pressable } from "react-native";
+import CloseIcon from "../../../../assets/icons/close.svg";
+import { Icon } from "./Icon";
 
 export type CardType = "info" | "msg";
 export type CardProps = {
@@ -18,6 +21,7 @@ export type CardProps = {
   titleVariant?: keyof typeof typography;
   icon?: (color: string) => React.ReactElement<{ color: string }>;
   children?: React.ReactNode;
+  onClose?: () => void;
 } & ViewProps;
 
 export function Card(props: CardProps) {
@@ -25,12 +29,13 @@ export function Card(props: CardProps) {
     style,
     type = "info",
     icon,
+    onClose,
     title,
     colorName = "background",
     textColorName = "text",
     borderColorName = "border1",
     content,
-    hasShadow = true,
+    hasShadow = false,
     textVariant = "body1",
     titleVariant = "h3",
     children,
@@ -46,9 +51,9 @@ export function Card(props: CardProps) {
       hasBackground={true}
       style={[
         {
-          borderWidth: 2,
-          borderRadius: 20,
-          padding: 17,
+          borderWidth: 1,
+          borderRadius: 13,
+          paddingVertical: 16,
           ...(hasShadow && {
             shadowColor: "#000",
             shadowOffset: {
@@ -65,24 +70,45 @@ export function Card(props: CardProps) {
       hasBorder
       {...otherProps}
     >
-      {children ? (
-        children
-      ) : (
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <>
-            {icon && <View style={{ marginRight: 15 }}>{icon(iconColor)}</View>}
-            <View style={{ flex: 1 }}>
+      {(title || icon || onClose) && (
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingBottom: 16,
+          }}
+        >
+          {(title || icon) && (
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                gap: 10,
+                alignItems: "center",
+              }}
+            >
+              {icon && <View>{icon(iconColor)}</View>}
               {title && (
                 <Text colorName={textColorName} variant={titleVariant}>
                   {title}
                 </Text>
               )}
-              <Text colorName={textColorName} variant={textVariant}>
-                {content}
-              </Text>
             </View>
-          </>
+          )}
+          {onClose && (
+            <Pressable onPress={onClose}>
+              <Icon colorOverride={iconColor} size={24} svg={CloseIcon} />
+            </Pressable>
+          )}
         </View>
+      )}
+      {children ? (
+        children
+      ) : (
+        <Text colorName={textColorName} variant={textVariant}>
+          {content}
+        </Text>
       )}
     </ThemedView>
   );

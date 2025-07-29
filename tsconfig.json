@@ -8,19 +8,20 @@
     "baseUrl": ".",
     "paths": {
       "@ui": ["src/core/ui"],
-      "@ui/*": ["src/core/ui/*"],
-      "@assets/*": ["assets/*"],
-      "@icons/*": ["assets/icons/*"]
+      "@ui/*": ["src/core/ui/*"]
     }
   },
   "include": [
     "src",
     "components",
+    "types",
     "**.ts",
     "**.js",
     "**.cjs",
     "app",
-    "eslint.config.mjs"
+    "eslint.config.mjs",
+    "db",
+    "shims"
   ],
   "exclude": ["node_modules", "android", "ios"]
 }

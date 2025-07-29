@@ -98,3 +98,5 @@ android/
 ios/
 
 credentials
+
+*.ort

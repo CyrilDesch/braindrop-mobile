@@ -3,6 +3,8 @@ module.exports = function (api) {
   return {
     presets: ["babel-preset-expo"],
     plugins: [
+      "babel-plugin-transform-import-meta",
+      ["inline-import", { "extensions": [".sql"] }],
       ["react-native-reanimated/plugin", { processNestedWorklets: true }],
       [
         'module-resolver',
@@ -10,7 +12,7 @@ module.exports = function (api) {
           root: ['.'],
           extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
           alias: {
-            '@ui': './src/core/ui'
+            '@ui': './src/core/ui',
           }
         }
       ]

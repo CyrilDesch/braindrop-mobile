@@ -33,12 +33,14 @@
       "softwareKeyboardLayoutMode": "pan"
     },
     "plugins": [
+      "expo-dev-client",
       "expo-font",
       "expo-asset",
       "expo-router",
       "@react-native-google-signin/google-signin",
       "expo-apple-authentication",
       "expo-secure-store",
+      "onnxruntime-react-native",
       [
         "expo-build-properties",
         {
@@ -46,7 +48,8 @@
             "usesCleartextTraffic": true
           }
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "newArchEnabled": true,
     "extra": {

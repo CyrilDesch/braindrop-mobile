@@ -1,34 +1,10 @@
-import { logger, consoleTransport } from "react-native-logs";
 import * as Sentry from "@sentry/react-native";
 import { isAxiosError } from "axios";
 import { isRunningInExpoGo } from "expo";
+import { Logger } from "../logger";
 
 export const navigationIntegration = Sentry.reactNavigationIntegration({
   enableTimeToInitialDisplay: !isRunningInExpoGo(),
-});
-
-const log = logger.createLogger({
-  levels: {
-    debug: 0,
-    info: 1,
-    warn: 2,
-    error: 3,
-  },
-  severity: "debug",
-  transport: consoleTransport,
-  transportOptions: {
-    colors: {
-      info: "blueBright",
-      warn: "yellowBright",
-      error: "redBright",
-    },
-  },
-  async: true,
-  dateFormat: "time",
-  printLevel: true,
-  printDate: true,
-  fixedExtLvlLength: false,
-  enabled: true,
 });
 
 Sentry.init({
@@ -45,20 +21,20 @@ Sentry.init({
 
     if (process.env.NODE_ENV === "development") {
       if (isAxiosError(hint.originalException)) {
-        log.error("Axios error:", hint.originalException.request);
+        Logger.error("Axios error:", hint.originalException.request);
       } else if (hint.originalException instanceof Error) {
-        log.error(
+        Logger.error(
           "Sentry event:",
           hint.originalException,
           " - Context: ",
           hint.captureContext,
         );
-        log.error(
+        Logger.error(
           "Sentry error stack:",
           (hint.originalException as Error).stack,
         );
       } else {
-        log.info("Sentry message:", hint.originalException);
+        Logger.info("Sentry message:", hint.originalException);
       }
       return null;
     }

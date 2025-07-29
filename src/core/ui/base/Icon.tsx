@@ -17,11 +17,13 @@ type VectorIconProps = {
   name: string;
   iconFamily?: keyof typeof ExpoIcons;
   svg?: never;
+  outlined?: never;
 };
 
 // Variant “local svg”
 type LocalSvgIconProps = {
   svg: ComponentType<SvgProps>;
+  outlined?: boolean;
   name?: never;
   iconFamily?: never;
   localName?: never;
@@ -41,6 +43,7 @@ export function Icon({
   style,
   onPress,
   svg: SvgComponent,
+  outlined = true,
   colorOverride,
 }: IconProps) {
   const color = useThemeColor(colorName);
@@ -51,9 +54,10 @@ export function Icon({
     return (
       <Pressable disabled={!onPress} onPress={onPress} style={style}>
         <SvgComponent
-          fill={finalColor}
+          color={finalColor}
+          fill={outlined ? "none" : finalColor}
           height={size}
-          stroke={finalColor}
+          stroke={outlined ? finalColor : "none"}
           width={size}
         />
       </Pressable>

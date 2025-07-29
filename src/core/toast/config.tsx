@@ -8,7 +8,7 @@ import {
 
 const toastProps: BaseToastProps = {
   text1Style: {
-    ...typography.h4,
+    ...typography.h3,
     fontSize: 16,
   },
   text2Style: {

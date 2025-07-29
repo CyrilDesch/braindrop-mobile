@@ -1,20 +1,21 @@
 // Light
-export const lightWhite = "rgb(250, 249, 246)";
+export const lightWhite = "rgba(255, 255, 255, 1)";
 export const lightGray = "rgba(255, 255, 255, 0.75)";
-export const lightMediumGray1 = "rgb(230, 230, 230)";
-export const lightMediumGray2 = "rgb(216, 216, 216)";
+export const lightMediumGray1 = "rgb(216, 216, 216)";
+export const lightMediumGray2 = "rgb(230, 230, 230)";
 
 // Dark
 export const darkBlack = "rgb(5, 5, 5)";
 export const darkGray = "rgba(0, 0, 0, 0.75)";
-export const darkMediumGray1 = "rgb(25, 25, 25)";
-export const darkMediumGray2 = "rgb(39, 39, 39)";
+export const darkMediumGray1 = "rgb(39, 39, 39)";
+export const darkMediumGray2 = "rgb(25, 25, 25)";
 
 // Base colors
 export const white = "rgba(255, 255, 255, 1)";
 export const black = "rgba(0, 0, 0, 1)";
 export const red = "rgba(202, 89, 89, 1)";
 export const magenta = "rgba(117, 50, 162, 0.9)";
+export const gray = "rgba(128, 128, 128, 1)";
 
 export const Theme = {
   light: {
@@ -36,6 +37,7 @@ export const Theme = {
 
     white: white,
     black: black,
+    gray: gray,
     transparent: "transparent",
   },
   dark: {
@@ -57,6 +59,7 @@ export const Theme = {
 
     white: white,
     black: black,
+    gray: gray,
     transparent: "transparent",
   },
 };

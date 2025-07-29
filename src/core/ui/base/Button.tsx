@@ -102,22 +102,24 @@ export const Button = React.forwardRef<
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
   },
   pressed: {},
   smallButton: {
     paddingVertical: 5,
-    paddingHorizontal: 10,
+    paddingHorizontal: 8,
+    borderRadius: 6,
   },
   mediumButton: {
     paddingVertical: 12,
     paddingHorizontal: 24,
+    borderRadius: 8,
   },
   largeButton: {
     paddingVertical: 16,
     paddingHorizontal: 32,
+    borderRadius: 10,
   },
   outlineButton: {
     borderWidth: 1.2,
@@ -131,6 +133,6 @@ const styles = StyleSheet.create({
     flexDirection: "row-reverse",
   },
   icon: {
-    marginHorizontal: 8,
+    marginRight: 3,
   },
 });

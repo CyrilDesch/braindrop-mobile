@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1752994718827,
+      "tag": "0000_open_raza",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1753035630025,
+      "tag": "0001_magenta_titania",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1753114262557,
+      "tag": "0002_cooing_gambit",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1753217356005,
+      "tag": "0003_wakeful_squirrel_girl",
+      "breakpoints": true
+    }
+  ]
+}
